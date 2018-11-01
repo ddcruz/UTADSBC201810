@@ -13,12 +13,15 @@ Private Sub CalculateYearlyMetricsPerTicker()
                 LastClose = Cells(x - 1, 6).Value
                 
                 'Yearly Change
-                Cells(i, 10).Value = LastClose - FirstOpen
-                If Cells(i, 10).Value < 0 Then
-                    Cells(i, 10).Interior.Color = vbRed
-                ElseIf Cells(i, 10).Value > 0 Then
-                    Cells(i, 10).Interior.Color = vbGreen
-                End If
+                With Cells(i, 10)
+                    .Value = LastClose - FirstOpen
+                    .NumberFormat = "0.000000000"
+                    If .Value < 0 Then
+                        .Interior.Color = vbRed
+                    ElseIf .Value > 0 Then
+                        .Interior.Color = vbGreen
+                    End If
+                End With
                 
                 'Percent Change
                 With Cells(i, 11)
